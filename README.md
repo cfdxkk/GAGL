@@ -1,5 +1,5 @@
-# ALIGN
-A.L.I.G.N. - Assisted Line Indicator Generating Navigation  
+# GAGL
+G.A.G.L - GAGL Are Great Lines  
 浏览器插件，用于在页面中生成辅助线
 
 ## 许可证
