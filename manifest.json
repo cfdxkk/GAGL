@@ -1,0 +1,19 @@
+{
+	"manifest_version": 3,
+	"name": "GAGL",
+	"description": "GAGL Are Great Lines",
+	"version": "0.1",
+	"action": {
+		"default_icon": "./static/image/GAGL_icon.png",
+		"default_title": "GAGL",
+		"default_popup": "popup.html"
+	},
+	"options_page": "options.html",
+	"permissions": [
+		"tabs",
+		"activeTab",
+		"notifications",
+		"storage",
+		"scripting"
+	]
+}
