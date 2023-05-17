@@ -7,15 +7,17 @@ const getCurrentTab = async () => {
 
 const getCurrentTabId = async () => {
 	const currentTab = await getCurrentTab()
+	console.log('currentTab', currentTab)
 	if (currentTab && currentTab.id) {
 		return currentTab.id
 	} else {
-		console.log('error when get active gat')
+		console.log('error when get active tag')
 		return undefined
 	}
 }
 
 const addLineOnYourPage = () => {
+	console.log('aaaaaaaaaaaaaaaaaaaaaaa')
 	getCurrentTabId().then(currentTabId => {
 		chrome.scripting.executeScript({
       target : {tabId : currentTabId},
