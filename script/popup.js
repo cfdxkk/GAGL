@@ -16,19 +16,34 @@ const getCurrentTabId = async () => {
 	}
 }
 
-const addLineOnYourPage = () => {
-	console.log('aaaaaaaaaaaaaaaaaaaaaaa')
+const addVerticalLineOnYourPage = () => {
 	getCurrentTabId().then(currentTabId => {
 		chrome.scripting.executeScript({
       target : {tabId : currentTabId},
-      files : [ "script/actions/addLine.js" ],
+      files : [ "script/actions/addVerticalLine.js" ],
     })
-    .then(() => console.log("script injected"));
+    .then(() => console.log("addVerticalLine script injected"));
 	})
 }
 
-const addLineButton = document.getElementById('add-line')
-if (addLineButton) {
-	addLineButton.addEventListener('click', addLineOnYourPage)
+const addVerticalLineButton = document.getElementById('add-vertical-line')
+if (addVerticalLineButton) {
+	addVerticalLineButton.addEventListener('click', addVerticalLineOnYourPage)
+}
+
+
+const addHorizontalLineOnYourPage = () => {
+	getCurrentTabId().then(currentTabId => {
+		chrome.scripting.executeScript({
+      target : {tabId : currentTabId},
+      files : [ "script/actions/addHorizontalLine.js" ],
+    })
+    .then(() => console.log("addHorizontalLine script injected"));
+	})
+}
+
+const addHorizontalLineButton = document.getElementById('add-horizontal-line')
+if (addHorizontalLineButton) {
+	addHorizontalLineButton.addEventListener('click', addHorizontalLineOnYourPage)
 }
 
