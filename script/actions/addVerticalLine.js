@@ -35,7 +35,7 @@ function addVerticalLine() {
 		verticalLineBg.style.width = '16px'
 		verticalLineBg.style.height = '100vh'
 	
-		verticalLineBg.style.position = 'fixed'
+		verticalLineBg.style.position = 'absolute'
 		verticalLineBg.style.left = '300px'
 		verticalLineBg.style.top = '0px'
 	

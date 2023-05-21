@@ -35,7 +35,7 @@ function addHorizontalLine() {
 		horizontalLineBg.style.width = '100vw'
 		horizontalLineBg.style.height = '16px'
 	
-		horizontalLineBg.style.position = 'fixed'
+		horizontalLineBg.style.position = 'absolute'
 		horizontalLineBg.style.left = '0px'
 		horizontalLineBg.style.top = '300px'
 	
