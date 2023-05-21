@@ -2,7 +2,8 @@ function addHorizontalLine() {
 	const bodyDom = document.body
 	const horizontalLineBgId = `gagl-horizontal-line-bg`
 	const horizontalLineId = `gagl-horizontal-line`
-	
+	const gaglLineBgClass = `gagl-line-bg`
+
 	let mouseIsDown = false
 	
 	const horizontalLineBgMouseOverEvent = () => {
@@ -29,6 +30,7 @@ function addHorizontalLine() {
 		const horizontalLineBg = document.createElement('div')
 	
 		horizontalLineBg.id = horizontalLineBgId
+		horizontalLineBg.className = gaglLineBgClass
 	
 		horizontalLineBg.style.width = '100vw'
 		horizontalLineBg.style.height = '16px'

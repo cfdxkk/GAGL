@@ -6,7 +6,8 @@
 		<div class="glgl-main-box">
 			<div class="glgl-popup-page-button" id="add-vertical-line">添加纵向辅助线</div>
 			<div class="glgl-popup-page-button" id="add-horizontal-line">添加横向辅助线</div>
-			<i style="padding-top: 40px; color: gray;">更多功能开发中...</i>
+			<div class="glgl-popup-page-button-warning" id="remove-all-lines">清空全部辅助线</div>
+			<i style="padding-top: 26px; color: gray;">更多功能开发中...</i>
 		</div>
 	</body>
 
@@ -40,6 +41,27 @@
 		}
 		.glgl-popup-page-button:hover{
 			background-color: #e1e1e1;
+			cursor: pointer;
+		}
+
+		.glgl-popup-page-button-warning{
+			width: 100%;
+			height: 30px;
+
+			background-color: #fdfdfd;
+
+			border-radius: 5px;
+			font-size: 1.2em;
+
+			margin-bottom: 10px;
+
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.glgl-popup-page-button-warning:hover{
+			background-color: #FF9090;
 			cursor: pointer;
 		}
 	</style>

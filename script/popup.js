@@ -7,7 +7,6 @@ const getCurrentTab = async () => {
 
 const getCurrentTabId = async () => {
 	const currentTab = await getCurrentTab()
-	console.log('currentTab', currentTab)
 	if (currentTab && currentTab.id) {
 		return currentTab.id
 	} else {
@@ -46,4 +45,23 @@ const addHorizontalLineButton = document.getElementById('add-horizontal-line')
 if (addHorizontalLineButton) {
 	addHorizontalLineButton.addEventListener('click', addHorizontalLineOnYourPage)
 }
+
+
+const removeAllLines = () => {
+	getCurrentTabId().then(currentTabId => {
+		chrome.scripting.executeScript({
+      target : {tabId : currentTabId},
+      files : [ "script/actions/removeAllLines.js" ],
+    })
+    .then(() => console.log("removeAllLines script injected"));
+	})
+}
+
+const removeAllLinesButton = document.getElementById('remove-all-lines')
+if (removeAllLinesButton) {
+	removeAllLinesButton.addEventListener('click', removeAllLines)
+}
+
+
+
 

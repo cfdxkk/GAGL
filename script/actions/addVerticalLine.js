@@ -2,6 +2,7 @@ function addVerticalLine() {
 	const bodyDom = document.body
 	const verticalLineBgId = `gagl-vertical-line-bg`
 	const verticalLineId = `gagl-vertical-line`
+	const gaglLineBgClass = `gagl-line-bg`
 	
 	let mouseIsDown = false
 	
@@ -29,6 +30,7 @@ function addVerticalLine() {
 		const verticalLineBg = document.createElement('div')
 	
 		verticalLineBg.id = verticalLineBgId
+		verticalLineBg.className = gaglLineBgClass
 	
 		verticalLineBg.style.width = '16px'
 		verticalLineBg.style.height = '100vh'
