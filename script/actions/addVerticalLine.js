@@ -38,6 +38,8 @@ function addVerticalLine() {
 		verticalLineBg.style.position = 'absolute'
 		verticalLineBg.style.left = '300px'
 		verticalLineBg.style.top = '0px'
+
+		verticalLineBg.style.transform = `translate3d(0px, 0px, 0px)`
 	
 		verticalLineBg.style.cursor = 'col-resize'
 	
@@ -92,7 +94,52 @@ function addVerticalLine() {
 		document.addEventListener("mousemove", drag, false)
 	
 	
-	
+		async function setCorrectScroll(lineDom) {
+			async function getTranslate3dValues(element) {
+				const matrix = await element.style.transform
+				let match
+				if (matrix && (match = matrix.match(/^translate3d\((.+)\)$/))) {
+					const values = match[1].split(', ')
+					return [parseFloat(values[0]), parseFloat(values[1])]
+				}
+		
+				return [0, 0]
+			}
+
+			const lineDOmTransformValue = await getTranslate3dValues(lineDom)
+			if (lineDOmTransformValue !== undefined && lineDOmTransformValue.length == 2) {
+				const [initialVerticalLinePosition, initialHorizontalLinePosition] = lineDOmTransformValue
+
+				async function correctScroll() {
+						if (initialVerticalLinePosition !== undefined && initialHorizontalLinePosition !== undefined) {
+							const xScrollOffset = window.scrollX
+							const yScrollOffset = window.scrollY
+							if (xScrollOffset !== undefined && yScrollOffset !== undefined) {
+								function updateLines() {
+									console.log('aaaaaaaa', xScrollOffset, yScrollOffset)
+									lineDom.style.transform = `translate3d(${initialVerticalLinePosition + xScrollOffset}px, ${initialHorizontalLinePosition + yScrollOffset}px, 0px)`
+								}
+								requestAnimationFrame(updateLines)
+							} else {
+								console.error('xScrollOffset or yScrollOffset undefined')
+							}
+						} else {
+							console.error('initialVerticalLinePosition or initialHorizontalLinePosition undefined')
+						}
+				}
+				
+				window.addEventListener('scroll', correctScroll)
+			} else {
+				console.error('lineDOmTransformValue undefined')
+			}
+			
+
+			
+			
+		}
+		setCorrectScroll(verticalLineBg)
+
+
 	
 	
 	
