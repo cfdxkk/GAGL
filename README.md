@@ -1,5 +1,5 @@
 # GAGL
-G.A.G.L - GAGL Are Great Lines (GAGL 是一个好用的辅助线)  
+G.A.G.L - GAGL Are Great Lines (GAGL 是好用的辅助线)  
 GAGL 是一个开源的、轻量级的浏览器插件，用于辅助前端开发人员的开发工作。  
 使用 GAGL 在网页中生成辅助线，可以检查页面中的元素是否已经正确对齐。  
   
