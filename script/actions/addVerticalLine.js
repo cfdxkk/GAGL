@@ -135,7 +135,7 @@ function addVerticalLine() {
 		// 动态监听 body 的高度，并随之改变辅助线的高度
 		const resizeObserver = new ResizeObserver(entries => {
 			for (let entry of entries) {
-				const bodyHeight = entry.target.scrollHeight
+				const bodyHeight = entry.target.scrollHeight - 1
 				verticalLineBg.style.height = `${bodyHeight}px`
 			}
 		})
