@@ -134,7 +134,7 @@ function addHorizontalLine() {
 		// 动态监听 body 的宽度，并随之改变辅助线的宽度
 		const resizeObserver = new ResizeObserver(entries => {
 			for (let entry of entries) {
-				const bodyWidth = entry.target.scrollWidth
+				const bodyWidth = entry.target.scrollWidth - 1
 				horizontalLineBg.style.width = `${bodyWidth}px`
 			}
 		})
