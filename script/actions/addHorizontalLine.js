@@ -3,8 +3,22 @@ function addHorizontalLine() {
 	const horizontalLineBgId = `gagl-horizontal-line-bg`
 	const horizontalLineId = `gagl-horizontal-line`
 	const gaglLineBgClass = `gagl-line-bg`
+	let horizontalLinePosition = 300 // 自定义的初始位置
 
 	let mouseIsDown = false
+
+	function getTranslate3dValues(element) {
+		const style = window.getComputedStyle(element)
+		const matrix = style.transform
+		let match
+	
+		if (matrix && (match = matrix.match(/^matrix3d\((.+)\)$/))) {
+			const values = match[1].split(', ')
+			return [parseFloat(values[12]), parseFloat(values[13])]
+		}
+	
+		return [0, 0]
+	}
 	
 	const horizontalLineBgMouseOverEvent = () => {
 		const horizontalLineBgDom = document.getElementById(horizontalLineBgId)
@@ -32,12 +46,13 @@ function addHorizontalLine() {
 		horizontalLineBg.id = horizontalLineBgId
 		horizontalLineBg.className = gaglLineBgClass
 	
-		horizontalLineBg.style.width = '100vw'
+		horizontalLineBg.style.width = '100%'
 		horizontalLineBg.style.height = '16px'
 	
-		horizontalLineBg.style.position = 'absolute'
+		horizontalLineBg.style.position = 'fixed'
 		horizontalLineBg.style.left = '0px'
-		horizontalLineBg.style.top = '300px'
+		horizontalLineBg.style.top = '0px'
+		horizontalLineBg.style.transform = `translate3d(0, ${horizontalLinePosition}px, 0)`
 	
 		horizontalLineBg.style.cursor = 'row-resize'
 	
@@ -56,11 +71,10 @@ function addHorizontalLine() {
 		let active = false
 		let currentY
 		let initialY
-		let yOffset = 0
 	
 		const dragStart = (e) => {
 			mouseIsDown = true
-			initialY = e.clientY - yOffset
+			initialY = e.clientY - horizontalLinePosition
 			if (e.target === horizontalLineBg) {
 				active = true
 			}
@@ -76,13 +90,14 @@ function addHorizontalLine() {
 			if (active) {
 				e.preventDefault()
 				currentY = e.clientY - initialY
-				yOffset = currentY
+				horizontalLinePosition = currentY
 				setTranslate(currentY)
 			}
 		}
 	
 		const setTranslate = (yPos) => {
 			requestAnimationFrame(() => {
+				horizontalLinePosition = yPos
 				horizontalLineBg.style.transform = `translate3d(0, ${yPos}px, 0)`
 			})
 		}
@@ -90,6 +105,19 @@ function addHorizontalLine() {
 		horizontalLineBg.addEventListener("mousedown", dragStart, false)
 		document.addEventListener("mouseup", dragEnd, false)
 		document.addEventListener("mousemove", drag, false)
+
+
+		window.addEventListener('scroll', function() {
+			const horizontalLine = document.getElementById(horizontalLineBgId)
+			if (horizontalLine) {
+				const [, initialHorizontalLinePosition] = getTranslate3dValues(horizontalLine)
+				horizontalLinePosition += initialHorizontalLinePosition
+				// 页面横向滚动时，横向辅助线跟随滚动
+				requestAnimationFrame(() => {
+					horizontalLine.style.transform = `translate3d(0, ${horizontalLinePosition - window.scrollY}px, 0)`
+				})
+			}
+		})
 	
 	
 	

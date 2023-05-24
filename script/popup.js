@@ -1,6 +1,6 @@
 const getCurrentTab = async () => {
 	let queryOptions = { active: true, lastFocusedWindow: true };
-	// `tab` will either be a `tabs.Tab` instance or `undefined`.
+	// @ts-ignore
 	let [tab] = await chrome.tabs.query(queryOptions);
 	return tab;
 }
@@ -15,8 +15,9 @@ const getCurrentTabId = async () => {
 	}
 }
 
-const addVerticalLineOnYourPage = () => {
+const addVerticalLineOnYourPageInjector = () => {
 	getCurrentTabId().then(currentTabId => {
+		// @ts-ignore
 		chrome.scripting.executeScript({
       target : {tabId : currentTabId},
       files : [ "script/actions/addVerticalLine.js" ],
@@ -27,12 +28,13 @@ const addVerticalLineOnYourPage = () => {
 
 const addVerticalLineButton = document.getElementById('add-vertical-line')
 if (addVerticalLineButton) {
-	addVerticalLineButton.addEventListener('click', addVerticalLineOnYourPage)
+	addVerticalLineButton.addEventListener('click', addVerticalLineOnYourPageInjector)
 }
 
 
-const addHorizontalLineOnYourPage = () => {
+const addHorizontalLineOnYourPageInjector = () => {
 	getCurrentTabId().then(currentTabId => {
+		// @ts-ignore
 		chrome.scripting.executeScript({
       target : {tabId : currentTabId},
       files : [ "script/actions/addHorizontalLine.js" ],
@@ -43,12 +45,13 @@ const addHorizontalLineOnYourPage = () => {
 
 const addHorizontalLineButton = document.getElementById('add-horizontal-line')
 if (addHorizontalLineButton) {
-	addHorizontalLineButton.addEventListener('click', addHorizontalLineOnYourPage)
+	addHorizontalLineButton.addEventListener('click', addHorizontalLineOnYourPageInjector)
 }
 
 
-const removeAllLines = () => {
+const removeAllLinesInjector = () => {
 	getCurrentTabId().then(currentTabId => {
+		// @ts-ignore
 		chrome.scripting.executeScript({
       target : {tabId : currentTabId},
       files : [ "script/actions/removeAllLines.js" ],
@@ -59,7 +62,7 @@ const removeAllLines = () => {
 
 const removeAllLinesButton = document.getElementById('remove-all-lines')
 if (removeAllLinesButton) {
-	removeAllLinesButton.addEventListener('click', removeAllLines)
+	removeAllLinesButton.addEventListener('click', removeAllLinesInjector)
 }
 
 
