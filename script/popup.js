@@ -1,8 +1,9 @@
 const getCurrentTab = async () => {
-	let queryOptions = { active: true, lastFocusedWindow: true };
+	let queryOptions = { active: true, lastFocusedWindow: true }
 	// `tab` will either be a `tabs.Tab` instance or `undefined`.
-	let [tab] = await chrome.tabs.query(queryOptions);
-	return tab;
+	// @ts-ignore
+	let [tab] = await chrome.tabs.query(queryOptions)
+	return tab
 }
 
 const getCurrentTabId = async () => {
@@ -10,18 +11,19 @@ const getCurrentTabId = async () => {
 	if (currentTab && currentTab.id) {
 		return currentTab.id
 	} else {
-		console.log('error when get active tag')
+		console.error('error when get active tag')
 		return undefined
 	}
 }
 
 const addVerticalLineOnYourPage = () => {
 	getCurrentTabId().then(currentTabId => {
+		// @ts-ignore
 		chrome.scripting.executeScript({
       target : {tabId : currentTabId},
       files : [ "script/actions/addVerticalLine.js" ],
     })
-    .then(() => console.log("addVerticalLine script injected"));
+    .then(() => console.log("addVerticalLine script injected"))
 	})
 }
 
@@ -33,11 +35,12 @@ if (addVerticalLineButton) {
 
 const addHorizontalLineOnYourPage = () => {
 	getCurrentTabId().then(currentTabId => {
+		// @ts-ignore
 		chrome.scripting.executeScript({
       target : {tabId : currentTabId},
       files : [ "script/actions/addHorizontalLine.js" ],
     })
-    .then(() => console.log("addHorizontalLine script injected"));
+    .then(() => console.log("addHorizontalLine script injected"))
 	})
 }
 
@@ -49,11 +52,12 @@ if (addHorizontalLineButton) {
 
 const removeAllLines = () => {
 	getCurrentTabId().then(currentTabId => {
+		// @ts-ignore
 		chrome.scripting.executeScript({
       target : {tabId : currentTabId},
       files : [ "script/actions/removeAllLines.js" ],
     })
-    .then(() => console.log("removeAllLines script injected"));
+    .then(() => console.log("removeAllLines script injected"))
 	})
 }
 

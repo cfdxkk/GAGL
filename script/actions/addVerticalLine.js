@@ -36,7 +36,8 @@ function addVerticalLine() {
 		verticalLineBg.style.height = '100vh'
 	
 		verticalLineBg.style.position = 'absolute'
-		verticalLineBg.style.left = '300px'
+		const windowScrollOffset = window.pageXOffset || 0
+		verticalLineBg.style.left = `${windowScrollOffset + 300}px`
 		verticalLineBg.style.top = '0px'
 	
 		verticalLineBg.style.cursor = 'col-resize'
@@ -101,7 +102,7 @@ function addVerticalLine() {
 		verticalLine.id = verticalLineId
 	
 		verticalLine.style.width = '2px'
-		verticalLine.style.height = '100vh'
+		verticalLine.style.height = '100%'
 	
 		verticalLine.style.backgroundColor = '#00D875C0'
 	
@@ -129,7 +130,20 @@ function addVerticalLine() {
 	
 	
 		bodyDom.appendChild(verticalLineBg)
+
+
+		// 动态监听 body 的高度，并随之改变辅助线的高度
+		const resizeObserver = new ResizeObserver(entries => {
+			for (let entry of entries) {
+				const bodyHeight = entry.target.scrollHeight
+				verticalLineBg.style.height = `${bodyHeight}px`
+			}
+		})
+
+		resizeObserver.observe(document.body)
 	}	
 }
 
 addVerticalLine()
+
+

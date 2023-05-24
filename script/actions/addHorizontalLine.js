@@ -37,7 +37,8 @@ function addHorizontalLine() {
 	
 		horizontalLineBg.style.position = 'absolute'
 		horizontalLineBg.style.left = '0px'
-		horizontalLineBg.style.top = '300px'
+		const windowScrollOffset = window.pageYOffset || 0
+		horizontalLineBg.style.top = `${windowScrollOffset + 300}px`
 	
 		horizontalLineBg.style.cursor = 'row-resize'
 	
@@ -100,7 +101,7 @@ function addHorizontalLine() {
 	
 		horizontalLine.id = horizontalLineId
 	
-		horizontalLine.style.width = '100vw'
+		horizontalLine.style.width = '100%'
 		horizontalLine.style.height = '2px'
 	
 		horizontalLine.style.backgroundColor = '#00D875C0'
@@ -129,6 +130,16 @@ function addHorizontalLine() {
 	
 	
 		bodyDom.appendChild(horizontalLineBg)
+
+		// 动态监听 body 的宽度，并随之改变辅助线的宽度
+		const resizeObserver = new ResizeObserver(entries => {
+			for (let entry of entries) {
+				const bodyWidth = entry.target.scrollWidth
+				horizontalLineBg.style.width = `${bodyWidth}px`
+			}
+		})
+
+		resizeObserver.observe(document.body)
 	}	
 }
 
