@@ -2,7 +2,7 @@
 	"manifest_version": 3,
 	"name": "GAGL",
 	"description": "GAGL Are Great Lines",
-	"version": "0.1.5",
+	"version": "0.1.6",
 	"action": {
 		"default_icon": "./static/image/GAGL_icon.png",
 		"default_title": "GAGL",
