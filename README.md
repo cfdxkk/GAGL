@@ -6,8 +6,8 @@ GAGL 是一个开源的、轻量级的浏览器插件，用于辅助前端开发
 A PART OF KIRAKIRA  
 
 ## 安装
-(该项目正在构建中，暂不提供安装教程)  
-(可使用 Chrome Extension 开发者模式直接导入当前的不完备版本，注意：可能不包含预期中的功能或存在安全隐患)  
+[Chrome 应用商店安装地址](https://chrome.google.com/webstore/detail/gagl/fnjehkkhfoifgggfmlfbkmmgdijdfdfi)  
+(或者可使用 Chrome Extension 开发者模式直接导入当前的不完备版本，注意：可能不包含预期中的功能或存在安全隐患)  
 
 ## TODO
 - [x] 实现 Chrome 浏览器插件原型，向页面注入 js 代码
