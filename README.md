@@ -16,4 +16,4 @@ A PART OF KIRAKIRA
 - [ ] 辅助线的高级控制功能（高亮、隐藏、自定义颜色、自定义尺寸、持久化等）
 
 ## 许可证
-该项目已获得 GLWTPL 许可，去他*的，祝你好运。
+该项目已获得 [GLWTPL](https://github.com/cfdxkk/GAGL/blob/main/LICENSE) 许可，去他*的，祝你好运。  
